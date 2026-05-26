@@ -73,6 +73,9 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "github-pages": {
+              "baseHref": "/web/"
             }
           },
           "defaultConfiguration": "production"
@@ -90,7 +93,12 @@
           "defaultConfiguration": "development"
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/web/",
+            "name": "web",
+            "cname": false
+          }
         }
       }
     }
