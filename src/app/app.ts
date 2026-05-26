@@ -41,6 +41,7 @@ export class App implements AfterViewInit, OnDestroy {
   protected readonly showSuccessMessage = signal(false);
   protected readonly isSubmitting = signal(false);
   protected readonly submitText = signal('Request Free Demo');
+  protected readonly selectedProductTitle = signal('');
 
   // Stats Counters
   protected readonly projectsCount = signal(0);
@@ -262,6 +263,33 @@ export class App implements AfterViewInit, OnDestroy {
       const top = el.getBoundingClientRect().top + window.scrollY - 100;
       window.scrollTo({ top, behavior: 'smooth' });
     }
+  }
+
+  protected selectProductForHero(product: VSuiteProduct) {
+    this.selectedProductTitle.set(product.name);
+    this.activeProductTab.set(product.id);
+    // Scroll to product display panel to show the product details
+    const productPanel = document.getElementById('product-display-panel');
+    if (productPanel) {
+      const navbar = document.querySelector('.navbar') as HTMLElement;
+      const navbarHeight = navbar ? navbar.offsetHeight : 80;
+      const panelRect = productPanel.getBoundingClientRect();
+      const scrollTop = window.scrollY + panelRect.top - navbarHeight - 20;
+      
+      window.scrollTo({ top: scrollTop, behavior: 'smooth' });
+      
+      // Add focus effect to product panel after scroll completes
+      setTimeout(() => {
+        productPanel.classList.add('product-focused');
+        setTimeout(() => {
+          productPanel.classList.remove('product-focused');
+        }, 2000);
+      }, 500);
+    }
+  }
+
+  protected resetHeroTitle() {
+    this.selectedProductTitle.set('');
   }
 
   protected goToProductDetail(productId: string) {

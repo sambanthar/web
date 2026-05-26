@@ -6,7 +6,11 @@
   <div id="loader">
     <div class="loader-inner">
       <div class="loader-logo">VT</div>
-      <div class="loader-bar">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Loading</div>
+      <div class="loader-dots">
+        <span></span>
+        <span></span>
         <span></span>
       </div>
     </div>
@@ -57,8 +61,13 @@
   <div class="hero-content">
     <div class="hero-badge reveal">⚡ Innovate Smart · Automate Fast · Scale Limitlessly</div>
     <h1 class="hero-title reveal">
-      Experience <span class="gradient-text typed-wrapper"><span>{{ typedText() }}</span><span class="cursor">|</span></span><br/>
-      <span class="hero-sub-title">For Modern Enterprises</span>
+      @if (selectedProductTitle()) {
+        <span class="gradient-text">{{ selectedProductTitle() }}</span><br/>
+        <span class="hero-sub-title">For Modern Enterprises</span>
+      } @else {
+        Experience <span class="gradient-text typed-wrapper"><span>{{ typedText() }}</span><span class="cursor">|</span></span><br/>
+        <span class="hero-sub-title">For Modern Enterprises</span>
+      }
     </h1>
     <p class="hero-desc reveal">
       Vishva Technologies drives enterprise transformation with **vSuite** – our unified billing, payroll, e-commerce, logistics OCR, and intelligent RPA bot ecosystem.
@@ -130,7 +139,7 @@
       @for (prod of vSuiteProducts; track prod.id) {
         <button class="prod-tab-btn"
                 [class.active]="activeProductTab() === prod.id"
-                (click)="goToProductDetail(prod.id)">
+                (click)="selectProductForHero(prod)">
           <div class="tab-icon-wrap" [style.background]="prod.gradient">
             <i class="fas {{ prod.icon }}"></i>
           </div>
