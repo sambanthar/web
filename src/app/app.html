@@ -22,8 +22,8 @@
 <nav id="navbar" class="navbar" [class.scrolled]="isScrolled()">
   <div class="nav-container">
     <a (click)="scrollTo('home')" class="nav-logo">
-      <span class="logo-icon">VT</span>
-      <span class="logo-text">Vishva<span class="accent">Tech</span></span>
+      <img src="assets/logo.png" alt="Vishva Technologies Logo" class="logo-img" onerror="this.style.display='none'">
+      <span class="logo-text">Vishva <span class="accent">Technologies</span></span>
     </a>
     <ul class="nav-links" [class.open]="menuOpen()">
       <li>
@@ -128,9 +128,9 @@
     <!-- Product Tab Selection -->
     <div class="product-tabs-grid reveal">
       @for (prod of vSuiteProducts; track prod.id) {
-        <button class="prod-tab-btn" 
+        <button class="prod-tab-btn"
                 [class.active]="activeProductTab() === prod.id"
-                (click)="selectProductTab(prod.id)">
+                (click)="goToProductDetail(prod.id)">
           <div class="tab-icon-wrap" [style.background]="prod.gradient">
             <i class="fas {{ prod.icon }}"></i>
           </div>
@@ -448,6 +448,200 @@
   </div>
 </section>
 
+<!-- ===== SOLUTIONS SECTION ===== -->
+<section id="solutions" class="solutions-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Solutions</div>
+      <h2 class="section-title">Industry-Specific <span>Solutions</span></h2>
+      <p class="section-sub">Industry-specific solutions built on the vSuite platform — designed to solve real business challenges across finance, commerce, workforce, and logistics.</p>
+    </div>
+
+    <div class="solutions-grid">
+      <div class="solution-card glass-card reveal">
+        <div class="solution-icon" style="background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="solution-category">FINANCE</div>
+        <h3>Smart Billing & Invoicing</h3>
+        <p>Instant GST-compliant invoice generation with UPI/QR payment support, automated reminders, recurring billing, and real-time sales dashboard for modern businesses.</p>
+      </div>
+
+      <div class="solution-card glass-card reveal">
+        <div class="solution-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);">
+          <i class="fas fa-calculator"></i>
+        </div>
+        <div class="solution-category">FINANCE</div>
+        <h3>Intelligent Accounting</h3>
+        <p>Complete financial management with general ledger, journal entries, expense tracking, GST compliance, bank reconciliation, and AI-driven financial forecasting.</p>
+      </div>
+
+      <div class="solution-card glass-card reveal">
+        <div class="solution-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="solution-category">WORKFORCE</div>
+        <h3>Automated Payroll</h3>
+        <p>Accurate salary processing with automated PF/ESI/TDS compliance, payslip generation, UPI salary disbursement, reimbursements, and AI-assisted anomaly detection.</p>
+      </div>
+
+      <div class="solution-card glass-card reveal">
+        <div class="solution-icon" style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="solution-category">WORKFORCE</div>
+        <h3>HR Management Suite</h3>
+        <p>End-to-end employee lifecycle management including onboarding, attendance, leave tracking, performance appraisals, self-service portal, and workforce analytics.</p>
+      </div>
+
+      <div class="solution-card glass-card reveal">
+        <div class="solution-icon" style="background: linear-gradient(135deg, #10b981 0%, #7c3aed 100%);">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="solution-category">COMMERCE</div>
+        <h3>E-Commerce Storefront</h3>
+        <p>Modern online store with customizable themes, product catalog management, seamless cart & checkout, multi-payment support, and AI-powered product recommendations.</p>
+      </div>
+
+      <div class="solution-card glass-card reveal">
+        <div class="solution-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="solution-category">LOGISTICS</div>
+        <h3>Logistics Document Automation</h3>
+        <p>Auto-download Bill of Lading and invoices from multiple vendor portals, with support for email, API, and web-based sources and vendor-wise scheduling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM SECTION ===== -->
+<section id="team" class="team-section dark-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Our Team</div>
+      <h2 class="section-title">Meet the <span>Talented Professionals</span></h2>
+      <p class="section-sub">Meet the talented professionals who bring your vision to life.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card glass-card reveal">
+        <div class="team-avatar">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3>Rajesh Kumar</h3>
+        <div class="team-role">Chief Technology Officer</div>
+        <p>Rajesh leads our engineering team with 15+ years of experience in enterprise software and cloud architecture.</p>
+      </div>
+
+      <div class="team-card glass-card reveal">
+        <div class="team-avatar">
+          <i class="fas fa-palette"></i>
+        </div>
+        <h3>Priya Sharma</h3>
+        <div class="team-role">Lead UI/UX Designer</div>
+        <p>Priya crafts beautiful, user-centric experiences with a background in cognitive science and digital product design.</p>
+      </div>
+
+      <div class="team-card glass-card reveal">
+        <div class="team-avatar">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3>Arun Patel</h3>
+        <div class="team-role">Full Stack Developer</div>
+        <p>Arun specializes in Angular, Node.js and cloud technologies, having delivered 80+ successful projects.</p>
+      </div>
+
+      <div class="team-card glass-card reveal">
+        <div class="team-avatar">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Meera Iyer</h3>
+        <div class="team-role">AI/ML Engineer</div>
+        <p>Meera brings cutting-edge machine learning solutions, with research publications in computer vision and NLP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ SECTION ===== -->
+<section id="faq" class="faq-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+      <p class="section-sub">Everything you need to know about working with us.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item glass-card reveal">
+        <div class="faq-number">01.</div>
+        <h3>What technologies do you use for web development?</h3>
+        <p>We use modern frameworks including Angular, React, and Vue.js for frontend, paired with Node.js, Python, and .NET for backend. We also leverage TypeScript, GraphQL, and RESTful APIs.</p>
+      </div>
+
+      <div class="faq-item glass-card reveal">
+        <div class="faq-number">02.</div>
+        <h3>How long does it take to build a web application?</h3>
+        <p>The timeline depends on the complexity and scope of the project. We provide detailed estimates during the discovery phase based on your specific requirements.</p>
+      </div>
+
+      <div class="faq-item glass-card reveal">
+        <div class="faq-number">03.</div>
+        <h3>Do you offer post-launch support and maintenance?</h3>
+        <p>Yes, we offer comprehensive post-launch support and maintenance packages to ensure your application continues to perform optimally.</p>
+      </div>
+
+      <div class="faq-item glass-card reveal">
+        <div class="faq-number">04.</div>
+        <h3>Can you work with our existing development team?</h3>
+        <p>Absolutely. We can collaborate with your existing team, provide additional expertise, or take over specific aspects of your project.</p>
+      </div>
+
+      <div class="faq-item glass-card reveal">
+        <div class="faq-number">05.</div>
+        <h3>How do you handle project communication and transparency?</h3>
+        <p>We maintain regular communication through scheduled updates, progress reports, and collaborative tools to ensure complete transparency throughout the project.</p>
+      </div>
+
+      <div class="faq-item glass-card reveal">
+        <div class="faq-number">06.</div>
+        <h3>What is your pricing model?</h3>
+        <p>We offer flexible pricing models including fixed-price, time & material, and dedicated team options based on your project needs and budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS SECTION ===== -->
+<section id="testimonials" class="testimonials-section dark-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-title">What Our <span>Clients Say</span></h2>
+      <p class="section-sub">Don't just take our word for it. Here's what clients from around the world say about working with Vishva Techno Labs.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card glass-card reveal">
+        <div class="testimonial-content">
+          <i class="fas fa-quote-left"></i>
+          <p>Clear insights and easy GST handling made our work effortless. vSuite Accounting is truly future-ready and scales with our growth.</p>
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="author-info">
+            <h4>Sarah Williams</h4>
+            <div class="author-role">Senior Accountant, Finance Pro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="footer-top">
@@ -455,10 +649,10 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a (click)="scrollTo('home')" class="nav-logo">
-            <span class="logo-icon">VT</span>
-            <span class="logo-text">Vishva<span class="accent">Tech</span></span>
+            <img src="assets/logo.png" alt="Vishva Technologies Logo" class="logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">Vishva <span class="accent">Technologies</span></span>
           </a>
-          <p>Helping organizations transform through product innovation, intelligent automation, and AI-driven scalability. Innovate Smart. Automate Fast. Scale Limitlessly.</p>
+          <p>Helping businesses transform through product innovation, intelligent automation, and AI-driven scalability. Innovate Smart. Automate Fast. Scale Limitlessly.</p>
           <div class="footer-social">
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>

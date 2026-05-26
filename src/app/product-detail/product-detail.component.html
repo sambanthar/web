@@ -1,0 +1,96 @@
+@if (product) {
+  <div class="product-detail-page">
+    <!-- Navigation Breadcrumb -->
+    <div class="breadcrumb">
+      <button (click)="goBack()" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <!-- Product Hero Section -->
+    <section class="product-hero">
+      <div class="hero-content">
+        <div class="product-badge">{{ product.category }}</div>
+        <h1 class="product-title">{{ product.name }}</h1>
+        <p class="product-tagline">{{ product.tagline }}</p>
+        <p class="product-description">
+          {{ product.description }}
+        </p>
+        <div class="hero-cta">
+          <a (click)="scrollToSection('features')" class="btn-primary">Explore Features <i class="fas fa-arrow-down"></i></a>
+          <a (click)="scrollToSection('benefits')" class="btn-ghost">View Benefits <i class="fas fa-star"></i></a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-card" [style.background]="product.gradient">
+          <i class="fas {{ product.icon }}"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Key Features</div>
+          <h2 class="section-title">Everything You Need for <span>Smart {{ product.name }}</span></h2>
+          <p class="section-sub">Comprehensive features designed to streamline your operations.</p>
+        </div>
+
+        <div class="features-grid">
+          @for (feature of product.features; track feature; let i = $index) {
+            <div class="feature-card glass-card">
+              <div class="feature-icon" [style.background]="product.gradient">
+                <i class="fas {{ product.icon }}"></i>
+              </div>
+              <h3>Feature {{ i + 1 }}</h3>
+              <p>{{ feature }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section dark-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Benefits</div>
+          <h2 class="section-title">Why Choose <span>{{ product.name }}</span></h2>
+          <p class="section-sub">Join leading organizations using {{ product.name }} to transform their operations.</p>
+        </div>
+
+        <div class="benefits-list">
+          @for (benefit of product.benefits; track benefit.title) {
+            <div class="benefit-item">
+              <i class="fas fa-check-circle text-green"></i>
+              <div>
+                <h4>{{ benefit.title }}</h4>
+                <p>{{ benefit.description }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content glass-card">
+          <h2>Ready to Transform Your Business?</h2>
+          <p>Join leading organizations using {{ product.name }} to achieve operational excellence.</p>
+          <button class="btn-primary">Request Free Demo <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+  </div>
+} @else {
+  <div class="not-found">
+    <div class="container">
+      <h2>Product Not Found</h2>
+      <p>The product you're looking for doesn't exist.</p>
+      <button (click)="goBack()" class="btn-primary">Go Back <i class="fas fa-arrow-left"></i></button>
+    </div>
+  </div>
+}

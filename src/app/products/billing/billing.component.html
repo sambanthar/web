@@ -1,0 +1,146 @@
+<div class="product-detail-page">
+  <!-- Navigation Breadcrumb -->
+  <div class="breadcrumb">
+    <button (click)="goBack()" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </button>
+  </div>
+
+  <!-- Product Hero Section -->
+  <section class="product-hero">
+    <div class="hero-content">
+      <div class="product-badge">vSuite Finance</div>
+      <h1 class="product-title">vSuite Billing</h1>
+      <p class="product-tagline">Smart Billing Software for Modern Businesses</p>
+      <p class="product-description">
+        vSuite Billing helps teams reduce manual follow-ups, prepare GST records faster, and keep every transaction visible from a single cloud workspace.
+      </p>
+      <div class="hero-cta">
+        <a (click)="scrollToSection('features')" class="btn-primary">Explore Features <i class="fas fa-arrow-down"></i></a>
+        <a (click)="scrollToSection('contact')" class="btn-ghost">Request Demo <i class="fas fa-calendar-check"></i></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-card">
+        <i class="fas fa-file-invoice-dollar"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Key Features</div>
+        <h2 class="section-title">Everything You Need for <span>Smart Billing</span></h2>
+        <p class="section-sub">Review daily and monthly sales performance with finance-ready summaries.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>Invoice Automation</h3>
+          <p>Auto-generate, send, and track invoices with smart payment reminders and real-time status updates.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Sales Performance</h3>
+          <p>Review daily and monthly sales performance with finance-ready summaries and detailed analytics.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Anomaly Detection</h3>
+          <p>Flag unusual invoice amounts, duplicate entries, and inconsistent payment patterns before they become finance issues.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>GST Records</h3>
+          <p>Prepare GST records faster with automated compliance checks and ready-to-file reports.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <h3>Cloud Workspace</h3>
+          <p>Keep every transaction visible from a single cloud workspace with real-time collaboration.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3>Smart Reminders</h3>
+          <p>Reduce manual follow-ups with automated payment reminders and escalation workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section dark-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Benefits</div>
+        <h2 class="section-title">Why Choose <span>vSuite Billing</span></h2>
+        <p class="section-sub">Join hundreds of forward-thinking businesses using vSuite to scale faster and smarter.</p>
+      </div>
+
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <i class="fas fa-check-circle text-green"></i>
+          <div>
+            <h4>Intelligent Automation</h4>
+            <p>Use intelligent automation to reduce repetitive finance work, improve accuracy, and surface the insights your team needs before month-end pressure builds.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <i class="fas fa-check-circle text-green"></i>
+          <div>
+            <h4>Real-time Visibility</h4>
+            <p>Keep every transaction visible from a single cloud workspace with complete audit trails.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <i class="fas fa-check-circle text-green"></i>
+          <div>
+            <h4>Compliance Ready</h4>
+            <p>Prepare GST records faster with automated compliance checks and ready-to-file reports.</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <i class="fas fa-check-circle text-green"></i>
+          <div>
+            <h4>Reduced Manual Work</h4>
+            <p>Reduce manual follow-ups with automated payment reminders and escalation workflows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="cta-section">
+    <div class="container">
+      <div class="cta-content glass-card">
+        <h2>Ready to Transform Your Billing?</h2>
+        <p>Join hundreds of forward-thinking businesses using vSuite Billing to scale faster and smarter.</p>
+        <button class="btn-primary">Request Free Demo <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+</div>

@@ -21,6 +21,7 @@ interface VSuiteProduct {
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [],
   templateUrl: './app.html',
   styleUrl: './app.scss'
@@ -254,12 +255,18 @@ export class App implements AfterViewInit, OnDestroy {
   // --- COMPONENT LOGIC & ACTIONS ---
   protected selectProductTab(tabId: string) {
     this.activeProductTab.set(tabId);
-    // Smooth scroll to product detail section inside products section
+    // Navigate to product detail page
+    // For now, keep the tab functionality but also add option to go to detail page
     const el = document.getElementById('product-display-panel');
     if (el) {
       const top = el.getBoundingClientRect().top + window.scrollY - 100;
       window.scrollTo({ top, behavior: 'smooth' });
     }
+  }
+
+  protected goToProductDetail(productId: string) {
+    // Navigate to product detail page
+    window.location.href = `/product/${productId}`;
   }
 
   protected getActiveProduct(): VSuiteProduct {
