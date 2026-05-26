@@ -1,0 +1,510 @@
+<!-- ===== SCROLL PROGRESS ===== -->
+<div class="scroll-progress" [style.width]="scrollProgressWidth()"></div>
+
+<!-- ===== LOADER ===== -->
+@if (isLoaderVisible()) {
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">VT</div>
+      <div class="loader-bar">
+        <span></span>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ===== CURSOR GLOW ===== -->
+@if (showGlow()) {
+  <div class="cursor-glow" [style.left.px]="cursorX()" [style.top.px]="cursorY()"></div>
+}
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar" class="navbar" [class.scrolled]="isScrolled()">
+  <div class="nav-container">
+    <a (click)="scrollTo('home')" class="nav-logo">
+      <span class="logo-icon">VT</span>
+      <span class="logo-text">Vishva<span class="accent">Tech</span></span>
+    </a>
+    <ul class="nav-links" [class.open]="menuOpen()">
+      <li>
+        <a (click)="scrollTo('home')" class="nav-link" [class.active]="activeSection() === 'home'">Home</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('products')" class="nav-link" [class.active]="activeSection() === 'products'">vSuite Products</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('about')" class="nav-link" [class.active]="activeSection() === 'about'">About</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('stats')" class="nav-link" [class.active]="activeSection() === 'stats'">Why Us</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('contact')" class="nav-link" [class.active]="activeSection() === 'contact'">Contact</a>
+      </li>
+    </ul>
+    <a (click)="scrollTo('contact')" class="btn-nav">Request Demo</a>
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
+  <canvas #particlesCanvas id="particles-canvas"></canvas>
+  <div class="hero-bg-image"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge reveal">⚡ Innovate Smart · Automate Fast · Scale Limitlessly</div>
+    <h1 class="hero-title reveal">
+      Experience <span class="gradient-text typed-wrapper"><span>{{ typedText() }}</span><span class="cursor">|</span></span><br/>
+      <span class="hero-sub-title">For Modern Enterprises</span>
+    </h1>
+    <p class="hero-desc reveal">
+      Vishva Technologies drives enterprise transformation with **vSuite** – our unified billing, payroll, e-commerce, logistics OCR, and intelligent RPA bot ecosystem.
+    </p>
+    <div class="hero-cta reveal">
+      <a (click)="scrollTo('products')" class="btn-primary">Explore vSuite <i class="fas fa-arrow-right"></i></a>
+      <a (click)="scrollTo('contact')" class="btn-ghost">Book a Consultation <i class="fas fa-calendar-check"></i></a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="h-stat">
+        <span class="h-num">350+</span>
+        <span class="h-label">Global Projects</span>
+      </div>
+      <div class="h-divider"></div>
+      <div class="h-stat">
+        <span class="h-num">48+</span>
+        <span class="h-label">Active AI Bots</span>
+      </div>
+      <div class="h-divider"></div>
+      <div class="h-stat">
+        <span class="h-num">24/7</span>
+        <span class="h-label">Autonomous Ops</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" (click)="scrollTo('products')">
+    <span>Explore Products</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT METRIC / MARQUEE ===== -->
+<section class="marquee-section">
+  <div class="marquee-label">Integrated Business Capabilities</div>
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <span><i class="fas fa-file-invoice-dollar"></i> vSuite Billing</span>
+      <span><i class="fas fa-calculator"></i> vSuite Accounting</span>
+      <span><i class="fas fa-receipt"></i> Smart Invoicing</span>
+      <span><i class="fas fa-wallet"></i> PayRoll Engine</span>
+      <span><i class="fas fa-users-cog"></i> vSuite HR Portal</span>
+      <span><i class="fas fa-shopping-cart"></i> Storefronts</span>
+      <span><i class="fas fa-brain"></i> AI OCR ProcessFlow</span>
+      <span><i class="fas fa-robot"></i> RPA Software Bots</span>
+      <!-- Duplicate -->
+      <span><i class="fas fa-file-invoice-dollar"></i> vSuite Billing</span>
+      <span><i class="fas fa-calculator"></i> vSuite Accounting</span>
+      <span><i class="fas fa-receipt"></i> Smart Invoicing</span>
+      <span><i class="fas fa-wallet"></i> PayRoll Engine</span>
+      <span><i class="fas fa-users-cog"></i> vSuite HR Portal</span>
+      <span><i class="fas fa-shopping-cart"></i> Storefronts</span>
+      <span><i class="fas fa-brain"></i> AI OCR ProcessFlow</span>
+      <span><i class="fas fa-robot"></i> RPA Software Bots</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS SECTION ===== -->
+<section id="products" class="products section dark-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Enterprise Ecosystem</div>
+      <h2 class="section-title">The <span>vSuite Product Line</span></h2>
+      <p class="section-sub">A cohesive suite of finance, workforce, e-commerce, and automation tools built to scale your business limitlessly.</p>
+    </div>
+
+    <!-- Product Tab Selection -->
+    <div class="product-tabs-grid reveal">
+      @for (prod of vSuiteProducts; track prod.id) {
+        <button class="prod-tab-btn" 
+                [class.active]="activeProductTab() === prod.id"
+                (click)="selectProductTab(prod.id)">
+          <div class="tab-icon-wrap" [style.background]="prod.gradient">
+            <i class="fas {{ prod.icon }}"></i>
+          </div>
+          <span>{{ prod.name }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Active Product Display Panel -->
+    <div id="product-display-panel" class="product-panel-wrap reveal">
+      @let currentProd = getActiveProduct();
+      <div class="product-panel glass-card">
+        <div class="panel-header">
+          <div class="header-icon" [style.background]="currentProd.gradient">
+            <i class="fas {{ currentProd.icon }}"></i>
+          </div>
+          <div>
+            <span class="panel-category-tag">vSuite Module</span>
+            <h3>{{ currentProd.name }}</h3>
+          </div>
+        </div>
+        <p class="panel-description-tagline">{{ currentProd.tagline }}</p>
+        <p class="panel-details-text">{{ currentProd.details }}</p>
+        
+        <div class="panel-modules-grid">
+          @for (subMod of currentProd.modules; track subMod.name) {
+            <div class="panel-sub-card glass-card" #subCard
+                 (mousemove)="onCardMouseMove($event, subCard)"
+                 (mouseleave)="onCardMouseLeave(subCard)">
+              <h4>{{ subMod.name }}</h4>
+              <p class="sub-tagline">{{ subMod.tagline }}</p>
+              <p class="sub-desc">{{ subMod.desc }}</p>
+              <div class="sub-features-list">
+                @for (feat of subMod.features; track feat) {
+                  <div class="sub-feat-item">
+                    <i class="fas fa-check-circle text-green"></i>
+                    <span>{{ feat }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+        
+        <div class="panel-action-row">
+          <a (click)="scrollTo('contact')" class="btn-primary">Request Demo for {{ currentProd.name }} <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUTOMATION METHODOLOGY ===== -->
+<section class="methodology section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Methodology</div>
+      <h2 class="section-title">From Discovery to <span>Autonomous Growth</span></h2>
+      <p class="section-sub">A structured three-phase approach that maps, builds, and deploys intelligent automation with minimal disruption to operations.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="ps-number">01</div>
+        <div class="ps-content">
+          <h3>Process Mapping & Discovery</h3>
+          <p>Analyze existing workflows to identify the highest-ROI automation candidates. Map every administrative task for bot replication.</p>
+        </div>
+      </div>
+      <div class="process-connector"></div>
+      <div class="process-step reveal" data-delay="100">
+        <div class="ps-number">02</div>
+        <div class="ps-content">
+          <h3>Rapid Prototype & PoC</h3>
+          <p>Configure and validate software bots using low-code tools. Validate intelligence templates securely prior to full integration.</p>
+        </div>
+      </div>
+      <div class="process-connector"></div>
+      <div class="process-step reveal" data-delay="200">
+        <div class="ps-number">03</div>
+        <div class="ps-content">
+          <h3>Continuous Deployment</h3>
+          <p>Deploy bots integrated directly into your existing ERP, Finance, or HR databases, functioning 24/7 at machine speed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT US ===== -->
+<section id="about" class="about section dark-section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <div class="about-img-frame">
+          <img src="assets/about_team.png" alt="Vishva Technologies Core Team" class="about-img" />
+          <div class="about-img-glow"></div>
+        </div>
+        <div class="about-card glass-card ac1" #abCard1
+             (mousemove)="onCardMouseMove($event, abCard1)"
+             (mouseleave)="onCardMouseLeave(abCard1)">
+          <i class="fas fa-brain"></i>
+          <div>
+            <strong>AI First</strong>
+            <p>Unstructured data extraction</p>
+          </div>
+        </div>
+        <div class="about-card glass-card ac2" #abCard2
+             (mousemove)="onCardMouseMove($event, abCard2)"
+             (mouseleave)="onCardMouseLeave(abCard2)">
+          <i class="fas fa-lock"></i>
+          <div>
+            <strong>Secured Ops</strong>
+            <p>Statutory compliant files</p>
+          </div>
+        </div>
+        <div class="about-years">
+          <span class="years-num">vSuite</span>
+          <span class="years-label">Modular<br/>SaaS Hub</span>
+        </div>
+      </div>
+      <div class="about-content reveal-right">
+        <div class="section-tag">Corporate Mission</div>
+        <h2 class="section-title">Helping Businesses <span>Transform & Automate</span></h2>
+        <p class="about-desc">
+          Vishva Technologies enables organizations to achieve digital agility through product innovation, intelligent automation, and AI-driven scalability.
+        </p>
+        <p class="about-desc">
+          Our vSuite enterprise workspace drives rapid efficiency improvements across corporate accounting, HR, payroll systems, global commerce, and document flow logistics.
+        </p>
+        
+        <div class="mission-bullets">
+          <div class="mb-item">
+            <i class="fas fa-rocket text-primary-light"></i>
+            <div>
+              <strong>Innovate Smart</strong>
+              <p>Build secure software infrastructures that convert raw ideas into clean cash flows.</p>
+            </div>
+          </div>
+          <div class="mb-item">
+            <i class="fas fa-robot text-cyan"></i>
+            <div>
+              <strong>Automate Fast</strong>
+              <p>Deploy low-code software bots that execute repetitive rule-based tasks with zero latency.</p>
+            </div>
+          </div>
+          <div class="mb-item">
+            <i class="fas fa-expand-arrows-alt text-green"></i>
+            <div>
+              <strong>Scale Limitlessly</strong>
+              <p>Harness modular databases and AI automation platforms to grow without operational overheads.</p>
+            </div>
+          </div>
+        </div>
+        <a (click)="scrollTo('contact')" class="btn-primary mt-2">Get Started Today <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section id="stats" class="stats-section section" #statsSection>
+  <div class="stats-bg"></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Validation</div>
+      <h2 class="section-title">Verified <span>Operational Scale</span></h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal" #scCard1
+           (mousemove)="onCardMouseMove($event, scCard1)"
+           (mouseleave)="onCardMouseLeave(scCard1)">
+        <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="stat-number">{{ formatCounterValue(projectsCount()) }}</div>
+        <div class="stat-suffix">+</div>
+        <div class="stat-label">Enterprise Projects</div>
+      </div>
+      <div class="stat-card reveal" data-delay="100" #scCard2
+           (mousemove)="onCardMouseMove($event, scCard2)"
+           (mouseleave)="onCardMouseLeave(scCard2)">
+        <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+        <div class="stat-number">{{ formatCounterValue(clientsCount()) }}</div>
+        <div class="stat-suffix">+</div>
+        <div class="stat-label">Satisfied Clients</div>
+      </div>
+      <div class="stat-card reveal" data-delay="200" #scCard3
+           (mousemove)="onCardMouseMove($event, scCard3)"
+           (mouseleave)="onCardMouseLeave(scCard3)">
+        <div class="stat-icon"><i class="fas fa-code"></i></div>
+        <div class="stat-number">{{ formatCounterValue(codeCount()) }}</div>
+        <div class="stat-suffix">+</div>
+        <div class="stat-label">Lines of Code Built</div>
+      </div>
+      <div class="stat-card reveal" data-delay="300" #scCard4
+           (mousemove)="onCardMouseMove($event, scCard4)"
+           (mouseleave)="onCardMouseLeave(scCard4)">
+        <div class="stat-icon"><i class="fas fa-microchip"></i></div>
+        <div class="stat-number">{{ formatCounterValue(automationBotsCount()) }}</div>
+        <div class="stat-suffix">+</div>
+        <div class="stat-label">Active Software Bots</div>
+      </div>
+    </div>
+    <div class="why-us-grid">
+      <div class="wu-card reveal" #wCard1
+           (mousemove)="onCardMouseMove($event, wCard1)"
+           (mouseleave)="onCardMouseLeave(wCard1)">
+        <i class="fas fa-bolt wu-icon" style="color:#f59e0b;"></i>
+        <h3>Machine Speed</h3>
+        <p>Software bots process complex invoices, waybills, and ledgers in sub-seconds — eliminating backlogs.</p>
+      </div>
+      <div class="wu-card reveal" data-delay="100" #wCard2
+           (mousemove)="onCardMouseMove($event, wCard2)"
+           (mouseleave)="onCardMouseLeave(wCard2)">
+        <i class="fas fa-check-double wu-icon" style="color:#10b981;"></i>
+        <h3>Zero Human Error</h3>
+        <p>100% compliant data validation and entry checks to ensure audit readiness at any scale.</p>
+      </div>
+      <div class="wu-card reveal" data-delay="200" #wCard3
+           (mousemove)="onCardMouseMove($event, wCard3)"
+           (mouseleave)="onCardMouseLeave(wCard3)">
+        <i class="fas fa-shield-alt wu-icon" style="color:#6366f1;"></i>
+        <h3>GST-Ready Records</h3>
+        <p>Finance, payroll, and invoicing processes fully conform to recent statutory mandates and tax formats.</p>
+      </div>
+      <div class="wu-card reveal" data-delay="300" #wCard4
+           (mousemove)="onCardMouseMove($event, wCard4)"
+           (mouseleave)="onCardMouseLeave(wCard4)">
+        <i class="fas fa-expand wu-icon" style="color:#ec4899;"></i>
+        <h3>Infinite Extensibility</h3>
+        <p>Start with a single Billing configuration and easily hook HR, Logistics OCR, or custom CRM later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT & DEMO REQUEST ===== -->
+<section id="contact" class="contact section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">Book a Consultation</div>
+      <h2 class="section-title">Schedule a <span>vSuite Platform Demo</span></h2>
+      <p class="section-sub">Let us evaluate your administrative workflows and show you how much manual time you can save with intelligent automation.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <div class="ci-card glass-card">
+          <i class="fas fa-map-marker-alt ci-icon" style="--c:#6366f1;"></i>
+          <div>
+            <h4>Headquarters</h4>
+            <p>Vishva Technologies IT Park,<br/>OMR Tech Highway, Chennai,<br/>Tamil Nadu 600097, India</p>
+          </div>
+        </div>
+        <div class="ci-card glass-card">
+          <i class="fas fa-phone-alt ci-icon" style="--c:#10b981;"></i>
+          <div>
+            <h4>Phone Enquiries</h4>
+            <p>+91 44 4567 8901<br/>+91 99887 76655</p>
+          </div>
+        </div>
+        <div class="ci-card glass-card">
+          <i class="fas fa-envelope ci-icon" style="--c:#f59e0b;"></i>
+          <div>
+            <h4>Email Support</h4>
+            <p>info@vishvatechnologies.com<br/>demo@vishvatechnologies.com</p>
+          </div>
+        </div>
+        <div class="ci-social">
+          <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal-right">
+        <form class="contact-form glass-card" (submit)="submitContactForm($event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Full Name</label>
+              <input type="text" id="fname" placeholder="Full Name" required />
+            </div>
+            <div class="form-group">
+              <label for="femail">Corporate Email</label>
+              <input type="email" id="femail" placeholder="name@company.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fphone">Phone Number</label>
+              <input type="tel" id="fphone" placeholder="+91 00000 00000" />
+            </div>
+            <div class="form-group">
+              <label for="fservice">vSuite Module Interest</label>
+              <select id="fservice" required>
+                <option value="">Select a vSuite Module</option>
+                <option value="finance">vSuite Finance (Billing & Accounting)</option>
+                <option value="workforce">vSuite Workforce (Payroll & HR)</option>
+                <option value="commerce">vSuite Commerce (E-Commerce Storefront)</option>
+                <option value="logistics">vSuite Logistics (AI OCR ProcessFlow)</option>
+                <option value="automation">vSuite RPA Bot Platform</option>
+                <option value="ai">Vishva AI & LLM Automation</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fmessage">Describe Your Business Workflow</label>
+            <textarea id="fmessage" rows="5" placeholder="Specify any current systems in use (ERP, manual spreadsheets...) and the volume of records processed..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-w" [disabled]="isSubmitting()">
+            <span>{{ submitText() }}</span>
+            <i class="fas fa-calendar-check"></i>
+          </button>
+          <div class="form-success" [class.show]="showSuccessMessage()">
+            <i class="fas fa-check-circle"></i> Thank you! A vSuite solutions expert will contact you to schedule a live walkthrough within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a (click)="scrollTo('home')" class="nav-logo">
+            <span class="logo-icon">VT</span>
+            <span class="logo-text">Vishva<span class="accent">Tech</span></span>
+          </a>
+          <p>Helping organizations transform through product innovation, intelligent automation, and AI-driven scalability. Innovate Smart. Automate Fast. Scale Limitlessly.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>vSuite Modules</h4>
+          <ul>
+            <li><a (click)="selectProductTab('finance')">vSuite Finance</a></li>
+            <li><a (click)="selectProductTab('workforce')">vSuite Workforce</a></li>
+            <li><a (click)="selectProductTab('commerce')">vSuite Commerce</a></li>
+            <li><a (click)="selectProductTab('logistics')">vSuite Logistics</a></li>
+            <li><a (click)="selectProductTab('automation')">vSuite RPA</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a (click)="scrollTo('about')">About vSuite</a></li>
+            <li><a (click)="scrollTo('stats')">Why Us</a></li>
+            <li><a (click)="scrollTo('contact')">Request Demo</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Chennai HQ</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@vishvatechnologies.com</li>
+            <li><i class="fas fa-phone"></i> +91 44 4567 8901</li>
+            <li><i class="fas fa-map-marker-alt"></i> OMR Highway, Chennai, India</li>
+          </ul>
+          <div class="footer-badge">
+            <i class="fas fa-certificate"></i> Enterprise Secure SaaS Hub
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2025 Vishva Technologies. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== BACK TO TOP ===== -->
+<button id="backToTop" class="back-to-top" [class.visible]="isScrolled()" (click)="scrollTo('home')" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
